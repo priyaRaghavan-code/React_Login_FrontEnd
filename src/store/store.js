@@ -1,9 +1,7 @@
 import axios from "axios";
 import { Next } from "react-bootstrap/esm/PageItem";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import { GET_POSTS } from "../actions/PostActions";
-import AuthReducer from "../reducers/AuthReducer";
-import PostsReducer from "../reducers/PostsReducer";
+import AuthReducer from "../store/reducers/AuthReducer";
 import thunk from 'redux-thunk';
 
 const loggerMiddleWare =(store) => (next) =>(action) =>{
@@ -14,12 +12,12 @@ const loggerMiddleWare =(store) => (next) =>(action) =>{
 
 }
 
-const fetchDataMiddleWare=store => next=> action =>{
-  if(action.type === GET_POSTS){
-    axios.get(`https:`)
-  }
-  return next(action);
-}
+// const fetchDataMiddleWare=store => next=> action =>{
+//   if(action.type === GET_POSTS){
+//     axios.get(`https:`)
+//   }
+//   return next(action);
+// }
 const middleware = applyMiddleware(thunk);
 
 const reducers = combineReducers({

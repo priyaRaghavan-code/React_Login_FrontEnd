@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { SignUpAction } from '../../actions/AuthAction';
+import { connect, useDispatch } from 'react-redux';
+import { loadingToggleAction, SignUpAction } from '../../store/actions/AuthAction';
+import Loader from '../../components/Loader/Loader';
 
-export default function SignUp() {
+function SignUp(props) {
   const[name,setName] = useState('');
   const[username,setUsername] = useState('');
   const[email,setEmail] = useState('');
@@ -42,14 +43,19 @@ export default function SignUp() {
     if (error) {
       return;
     }
+    dispatch(loadingToggleAction(true));
     debugger;
-    dispatch(SignUpAction(name,username,email,password,password_confirmation))
+    dispatch(SignUpAction(name,username,email,password,password_confirmation,props.history))
   }
 
   return (
     <div className="flex justify-center my-5">
+      {props.showLoading && <Loader /> }
       <div className="w-1/3 shadow p-3 border border-grey-400">
         <h1 className="text-2xl font-extrabold">Sign Up</h1>
+        {props.errorMessage && <div className="bg-red-300 text-red-900 border border-red-900 p-1 my-2">{props.errorMessage}</div>}
+        {props.successMessage && <div className="bg-green-300 text-green-900 border border-green-900 p-1 my-2">{props.successMessage}</div>}
+
         <form onSubmit={onSignUp}>
           <div>
             <label>Name</label>
@@ -61,7 +67,7 @@ export default function SignUp() {
                   onChange={(e)=>setName(e.target.value)}
                 />
               </div>
-              {errors.name && <div>{errors.name}</div>}
+              {errors.name && <div className="text-red-500">{errors.name}</div>}
           </div>
           <div>
             <label>Username</label>
@@ -73,7 +79,7 @@ export default function SignUp() {
                   onChange={(e)=>setUsername(e.target.value)}
                 />
               </div>
-              {errors.username && <div>{errors.username}</div>}
+              {errors.username && <div className="text-red-500">{errors.username}</div>}
               
           </div>
           <div>
@@ -86,7 +92,7 @@ export default function SignUp() {
                   onChange={(e)=>setEmail(e.target.value)}
                 />
               </div>
-              {errors.email && <div>{errors.email}</div>}
+              {errors.email && <div className="text-red-500">{errors.email}</div>}
 
           </div>
           <div>
@@ -99,7 +105,7 @@ export default function SignUp() {
                   onChange={(e)=>setPassword(e.target.value)}
                 />
               </div>
-              {errors.password && <div>{errors.password}</div>}
+              {errors.password && <div className="text-red-500">{errors.password}</div>}
 
           </div>
           <div>
@@ -112,7 +118,7 @@ export default function SignUp() {
                   onChange={(e)=>setPasswordConfirmation(e.target.value)}
                 />
               </div>
-              {errors.password_confirmation && <div>{errors.password_confirmation}</div>}
+              {errors.password_confirmation && <div className="text-red-500">{errors.password_confirmation}</div>}
 
           </div>
           <div className="my-3">
@@ -123,3 +129,13 @@ export default function SignUp() {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    errorMessage: state.auth.errorMessage,
+    successMessage: state.auth.successMessage,
+    showLoading: state.auth.showLoading,
+  }
+}
+
+export default connect(mapStateToProps)(SignUp);

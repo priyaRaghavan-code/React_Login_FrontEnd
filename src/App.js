@@ -1,28 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
-import Posts from './components/Posts/Posts';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import SignUp from './pages/SignUp/SignUp';
+import Login from './pages/Login/Login';
+import { withRouter } from 'react-router-dom';
+import { isAuthenticated } from './store/selector/AuthSelector';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props) {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
     <div>
       <Header />
         <div className='container px-3 mx-auto'>
-          <Switch>
-            {/* <Route path='/posts' component={Posts} /> */}
-            <Route path='/' component={SignUp} />
+        <Switch>
+            <Route exact path="/" component={SignUp} />
             <Route path='/home' component={Home} />
-
+            <Route  path="/login" component={Login} />
           </Switch>
-          {/* <Posts /> */}
         </div>
     </div>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: isAuthenticated(state),
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(App));
