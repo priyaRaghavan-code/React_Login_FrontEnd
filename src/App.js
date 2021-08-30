@@ -9,16 +9,35 @@ import { isAuthenticated } from './store/selector/AuthSelector';
 import { connect } from 'react-redux';
 
 function App(props) {
+  let routes = (
+  <Switch>
+    <Route  path="/signup" component={SignUp} />
+    <Route  path="/login" component={Login} />
+  </Switch>
+  );
+
+  if(props.isAuthenticated) {
+    debugger;
+    console.log(props.isAuthenticated);
+    routes =(
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Redirect to='/' />
+      </Switch>
+    );
+
+  }
   return (
     // <BrowserRouter>
     <div>
       <Header />
         <div className='container px-3 mx-auto'>
-        <Switch>
-            <Route exact path="/" component={SignUp} />
-            <Route path='/home' component={Home} />
+          {routes}
+        {/* <Switch>
+            <Route  path="/signup" component={SignUp} />
             <Route  path="/login" component={Login} />
-          </Switch>
+            <Route exact path='/' component={Home} />
+          </Switch> */}
         </div>
     </div>
     // </BrowserRouter>

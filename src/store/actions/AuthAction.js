@@ -16,9 +16,8 @@ export function SignUpAction(name,username,email,password,password_confirmation,
       SignUp(name,username,email,password,password_confirmation).then(response => {
           saveTokenInLocalStorage(response.data);
           dispatch(confirmedSignUpAction(response.data));
-          history.push('/home');
+          history.push('/');
       }).catch((error)=>{
-        debugger;
         console.log(error.response.data,"Reg Error")
 
         const errorMessage = formatError(error.response.data)
@@ -32,7 +31,7 @@ export function loginAction(email,password,history){
     login(email,password).then(response => {
       saveTokenInLocalStorage(response.data);
       dispatch(confirmedLoginAction(response.data));
-      history.push('/home')
+      history.push('/')
   }).catch((error)=>{
     console.log(error.response.data,"Login Error")
     const errorMessage = loginFormatError(error.response.data)
@@ -44,7 +43,7 @@ export function loginAction(email,password,history){
 
 export function logoutAction(history){
   localStorage.removeItem('userDetail');
-  history.push('/login')
+  history.push('/login');
   return {
     type: LOGOUT_ACTION,
   };

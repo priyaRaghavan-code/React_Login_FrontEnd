@@ -44,7 +44,6 @@ function SignUp(props) {
       return;
     }
     dispatch(loadingToggleAction(true));
-    debugger;
     dispatch(SignUpAction(name,username,email,password,password_confirmation,props.history))
   }
 

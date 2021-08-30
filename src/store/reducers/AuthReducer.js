@@ -50,15 +50,16 @@ export default function AuthReducer(state = initialState, action) {
   }
 
   if(action.type === LOGOUT_ACTION){
-    debugger;
     return {
       ...state,
       errorMessage: '',
       successMessage: 'Logged out successfully',
       auth: {
-        email: '',
-        token: '',
-        exp: '',
+        email:'',
+        name:'',
+        username:'',
+        token:'',
+        exp:'',
       },
     };
   }

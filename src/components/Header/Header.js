@@ -20,7 +20,7 @@ function Header(props) {
 
           {!props.isAuthenticated && (
           <>
-              <Link to='/' className="px-2">
+              <Link to='/signup' className="px-2">
                 SignUp
               </Link>
               <Link to="/login" className="px-2">
