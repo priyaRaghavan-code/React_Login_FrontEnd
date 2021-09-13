@@ -1,8 +1,10 @@
 import axios from "axios";
 import React from "react";
 import { confirmedLoginAction, logoutAction } from "../actions/AuthAction";
+require("dotenv").config();
 
 export function SignUp(name, username, email, password, password_confirmation) {
+  const signUpUrl = process.env.REACT_APP_REG_API;
   const postData = {
     name,
     email,
@@ -10,16 +12,18 @@ export function SignUp(name, username, email, password, password_confirmation) {
     password_confirmation,
     username,
   };
-  // console.log(postData)
-  return axios.post(process.env.RAILS_APP_REG_API, postData);
+
+  return axios.post(signUpUrl, postData);
 }
 
 export function login(email, password) {
+  const loginUrl = process.env.REACT_APP_LOGIN_API;
+
   const postData = {
     email,
     password,
   };
-  return axios.post(process.env.RAILS_APP_LOGIN_API, postData);
+  return axios.post(loginUrl, postData);
 }
 
 export function formatError(errorResponse) {
