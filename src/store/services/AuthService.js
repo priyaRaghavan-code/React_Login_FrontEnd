@@ -23,9 +23,6 @@ export function login(email, password) {
 }
 
 export function formatError(errorResponse) {
-  debugger;
-  console.log(errorResponse);
-  console.log(errorResponse.error);
   const arr = errorResponse.error.split(", ");
   var result = [];
   console.log(arr);
@@ -87,7 +84,6 @@ export function runLogoutTimer(dispatch, timer) {
 }
 
 export function checkAutoLogin(dispatch) {
-  debugger;
   const tokenDetailsString = localStorage.getItem("userDetails");
   let tokenDetails = "";
   if (!tokenDetailsString) {

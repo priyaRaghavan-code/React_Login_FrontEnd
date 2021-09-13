@@ -26,9 +26,6 @@ export function SignUpAction(
   return (dispatch) => {
     SignUp(name, username, email, password, password_confirmation)
       .then((response) => {
-        debugger;
-        console.log(response);
-        debugger;
         saveTokenInLocalStorage(response.data);
         runLogoutTimer(dispatch, response.data.exp * 1000);
 
@@ -36,9 +33,6 @@ export function SignUpAction(
         history.push("/");
       })
       .catch((error) => {
-        debugger;
-        console.log(error.response.data.error, "Reg Error");
-        debugger;
         const errorMessage = formatError(error.response.data);
         dispatch(signupFailedAction(errorMessage));
       });
@@ -49,18 +43,12 @@ export function loginAction(email, password, history) {
   return (dispatch) => {
     login(email, password)
       .then((response) => {
-        debugger;
-
         saveTokenInLocalStorage(response.data);
         runLogoutTimer(dispatch, response.data.exp * 1000);
-        debugger;
-        console.log(response.data.exp);
         dispatch(confirmedLoginAction(response.data));
         history.push("/home");
       })
       .catch((error) => {
-        debugger;
-        // console.log(error.response.data.error, "Login Error");
         const errorMessage = formatError(error.response.data);
         dispatch(loginFailedAction(errorMessage));
       });

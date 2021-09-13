@@ -1,9 +1,7 @@
 import React from "react";
 
 function Home(props) {
-  debugger;
   let userDetails = JSON.parse(localStorage.getItem("userDetail"));
-  console.log(userDetails);
   return (
     <div className="flex justify-center my-20">
       <div className="w-1/3 shadow p-9 border border-grey-900 bg-blue-100">
