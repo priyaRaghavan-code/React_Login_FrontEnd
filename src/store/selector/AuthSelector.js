@@ -1,10 +1,8 @@
-export const isAuthenticated = state => {
-  console.log(state.auth.auth.token)
+export const isAuthenticated = (state) => {
+  console.log(state.auth.auth.token);
   if (state.auth.auth.token) {
     return true;
-  }
-  else{
+  } else {
     return false;
   }
-}
-
+};

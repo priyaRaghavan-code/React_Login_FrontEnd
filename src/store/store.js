@@ -2,15 +2,14 @@ import axios from "axios";
 import { Next } from "react-bootstrap/esm/PageItem";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import AuthReducer from "../store/reducers/AuthReducer";
-import thunk from 'redux-thunk';
+import thunk from "redux-thunk";
 
-const loggerMiddleWare =(store) => (next) =>(action) =>{
-  console.log("dispatching the action",action);
-  const act =  next(action);
-  console.log("next state",store.getState())
+const loggerMiddleWare = (store) => (next) => (action) => {
+  console.log("dispatching the action", action);
+  const act = next(action);
+  console.log("next state", store.getState());
   return act;
-
-}
+};
 
 // const fetchDataMiddleWare=store => next=> action =>{
 //   if(action.type === GET_POSTS){
@@ -22,12 +21,10 @@ const middleware = applyMiddleware(thunk);
 
 const reducers = combineReducers({
   auth: AuthReducer,
-})
+});
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(reducers,composeEnhancers(middleware));
-
-
+export const store = createStore(reducers, composeEnhancers(middleware));
 
 // function exampleMiddileWare(store){
 //   return function(next){
