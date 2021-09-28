@@ -9,9 +9,15 @@ import { isAuthenticated } from "./store/selector/AuthSelector";
 import { connect, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkAutoLogin } from "./store/services/AuthService";
+import { ProductComponent } from "./pages/Product/ProductComponent";
+import { ProductListing } from "./pages/Product/ProductListing";
+import { ProductDetail } from "./pages/Product/ProductDetail";
 require("dotenv").config();
 
 function App(props) {
+  const id = props.match.params.productId;
+  console.log(id, "ddfaf");
+
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   checkAutoLogin(dispatch);
@@ -24,10 +30,13 @@ function App(props) {
   );
 
   if (props.isAuthenticated) {
-    console.log(props.isAuthenticated);
+    // console.log(props.isAuthenticated);
     routes = (
       <Switch>
-        <Route path="/home" component={Home} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/product" component={ProductListing} />
+        <Route exact path="/product/:productId" component={ProductDetail} />
+        <Route>404 Not found</Route>
         <Redirect to="/home" />
       </Switch>
     );

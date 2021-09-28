@@ -4,7 +4,9 @@ import { confirmedLoginAction, logoutAction } from "../actions/AuthAction";
 require("dotenv").config();
 
 export function SignUp(name, username, email, password, password_confirmation) {
+  debugger;
   const signUpUrl = process.env.REACT_APP_REG_API;
+  // console.log(signUpUrl);
   const postData = {
     name,
     email,
@@ -12,7 +14,6 @@ export function SignUp(name, username, email, password, password_confirmation) {
     password_confirmation,
     username,
   };
-
   return axios.post(signUpUrl, postData);
 }
 
@@ -29,8 +30,8 @@ export function login(email, password) {
 export function formatError(errorResponse) {
   const arr = errorResponse.error.split(", ");
   var result = [];
-  console.log(arr);
-  console.log(errorResponse.error);
+  // console.log(arr);
+  // console.log(errorResponse.error);
   for (var i = 0; i < arr.length; i++) {
     var errorMsg = arr[i];
     switch (errorMsg) {
@@ -64,7 +65,7 @@ export function formatError(errorResponse) {
 }
 
 export function loginFormatError(errorResponse) {
-  console.log(errorResponse.error);
+  // console.log(errorResponse.error);
   switch (errorResponse.error) {
     case "unauthorized":
       // console.log([errorResponse.errors.email])

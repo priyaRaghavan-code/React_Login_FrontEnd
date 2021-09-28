@@ -3,6 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { logoutAction } from "../../store/actions/AuthAction";
+import { cartReducer } from "../../store/reducers/CartReducer";
 import { isAuthenticated } from "../../store/selector/AuthSelector";
 
 function Header(props) {
@@ -14,6 +15,12 @@ function Header(props) {
   return (
     <div>
       <div className="bg-blue-400 text-white px-2 py-2 flex items-center">
+        <div class="relative">
+          {/* <div class="align-right right-3">
+            <i class="fa fa-shopping-cart"></i>
+          </div> */}
+        </div>
+
         {/* <h2 className="font-bold text-lg mr-4">React Router</h2> */}
         <div>
           {!props.isAuthenticated && (
@@ -34,9 +41,11 @@ function Header(props) {
               <Link to="/home" className="px-2">
                 Home
               </Link>
+              <Link to="/product" className="px-2">
+                Product
+              </Link>
             </>
           )}
-
           {/* <Link to='/posts' className="px-2">Posts</Link> */}
         </div>
       </div>
