@@ -5,7 +5,7 @@ import {
   formatError,
   login,
   saveTokenInLocalStorage,
-  runLogoutTimer,
+  // runLogoutTimer,
 } from "../services/AuthService";
 
 export const SIGNUP_CONFIRMED_ACTION = "[signup action] confirmed signup";
@@ -27,7 +27,7 @@ export function SignUpAction(
     SignUp(name, username, email, password, password_confirmation)
       .then((response) => {
         saveTokenInLocalStorage(response.data);
-        runLogoutTimer(dispatch, response.data.exp * 1000);
+        // runLogoutTimer(dispatch, response.data.exp * 1000);
 
         dispatch(confirmedSignUpAction(response.data));
         history.push("/");
@@ -44,7 +44,7 @@ export function loginAction(email, password, history) {
     login(email, password)
       .then((response) => {
         saveTokenInLocalStorage(response.data);
-        runLogoutTimer(dispatch, response.data.exp * 1000);
+        // runLogoutTimer(dispatch, response.data.exp * 1000);
         dispatch(confirmedLoginAction(response.data));
         history.push("/home");
       })
@@ -57,7 +57,7 @@ export function loginAction(email, password, history) {
 
 export function logoutAction(history) {
   localStorage.removeItem("userDetail");
-  // history.push("/login");
+  history.push("/login");
   return {
     type: LOGOUT_ACTION,
   };

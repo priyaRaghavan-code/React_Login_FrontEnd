@@ -12,7 +12,6 @@ export function SignUp(name, username, email, password, password_confirmation) {
     password_confirmation,
     username,
   };
-
   return axios.post(signUpUrl, postData);
 }
 
@@ -29,8 +28,6 @@ export function login(email, password) {
 export function formatError(errorResponse) {
   const arr = errorResponse.error.split(", ");
   var result = [];
-  console.log(arr);
-  console.log(errorResponse.error);
   for (var i = 0; i < arr.length; i++) {
     var errorMsg = arr[i];
     switch (errorMsg) {
@@ -64,10 +61,8 @@ export function formatError(errorResponse) {
 }
 
 export function loginFormatError(errorResponse) {
-  console.log(errorResponse.error);
   switch (errorResponse.error) {
     case "unauthorized":
-      // console.log([errorResponse.errors.email])
       return "Email and password doesn't match";
     default:
       return "";
