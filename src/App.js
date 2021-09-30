@@ -16,7 +16,6 @@ require("dotenv").config();
 
 function App(props) {
   const id = props.match.params.productId;
-  console.log(id, "ddfaf");
 
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -30,7 +29,6 @@ function App(props) {
   );
 
   if (props.isAuthenticated) {
-    // console.log(props.isAuthenticated);
     routes = (
       <Switch>
         <Route exact path="/home" component={Home} />

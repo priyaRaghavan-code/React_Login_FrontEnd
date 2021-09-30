@@ -9,12 +9,10 @@ import {
 } from "../store/reducers/ProductReducer";
 import { cartReducer } from "./reducers/CartReducer";
 
-const loggerMiddleWare = (store) => (next) => (action) => {
-  console.log("dispatching the action", action);
-  const act = next(action);
-  console.log("next state", store.getState());
-  return act;
-};
+// const loggerMiddleWare = (store) => (next) => (action) => {
+//   const act = next(action);
+//   return act;
+// };
 
 // const fetchDataMiddleWare=store => next=> action =>{
 //   if(action.type === GET_POSTS){

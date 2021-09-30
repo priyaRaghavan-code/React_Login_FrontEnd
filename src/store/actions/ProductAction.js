@@ -8,17 +8,15 @@ export const FETCH_PRODUCTS = "[Fetch Products] Fetch Products";
 
 export const fetchProducts = () => async (dispatch) => {
   const productUrl = process.env.REACT_APP_PRODUCT_API;
-  const response = await axios.get(" http://localhost:3001/api/v1/products");
+  const response = await axios.get(productUrl);
   dispatch({ type: FETCH_PRODUCTS, payload: response.data.data });
 };
 
-export const fetchProduct = (id) => async (dispatch) => {
-  const productUrl = process.env.REACT_APP_PRODUCT_API;
-  const response = await axios.get(
-    ` http://localhost:3001/api/v1/products/${id}`
-  );
-  dispatch({ type: SELECTED_PRODUCTS, payload: response.data.data });
-};
+// export const fetchProduct = (id) => async (dispatch) => {
+//   const productUrl = process.env.REACT_APP_PRODUCT_API;
+//   const response = await axios.get(productUrl / { id });
+//   dispatch({ type: SELECTED_PRODUCTS, payload: response.data.data });
+// };
 
 export const setProducts = (products) => {
   return {

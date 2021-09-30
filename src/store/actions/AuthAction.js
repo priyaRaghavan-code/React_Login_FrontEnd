@@ -43,14 +43,12 @@ export function loginAction(email, password, history) {
   return (dispatch) => {
     login(email, password)
       .then((response) => {
-        debugger;
         saveTokenInLocalStorage(response.data);
         // runLogoutTimer(dispatch, response.data.exp * 1000);
         dispatch(confirmedLoginAction(response.data));
         history.push("/home");
       })
       .catch((error) => {
-        debugger;
         const errorMessage = formatError(error.response.data);
         dispatch(loginFailedAction(errorMessage));
       });

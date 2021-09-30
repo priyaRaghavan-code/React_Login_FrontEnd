@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import {
   removeSelectedProduct,
-  fetchProduct,
+  // fetchProduct,
 } from "../../store/actions/ProductAction";
 
 export const ProductDetail = () => {
@@ -12,12 +12,12 @@ export const ProductDetail = () => {
   let product = useSelector((state) => state.product);
   const { image, name, price, description } = product;
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (productId && productId !== "") dispatch(fetchProduct(productId));
-    return () => {
-      dispatch(removeSelectedProduct());
-    };
-  }, [productId]);
+  // useEffect(() => {
+  //   if (productId && productId !== "") dispatch(fetchProduct(productId));
+  //   return () => {
+  //     dispatch(removeSelectedProduct());
+  //   };
+  // }, [productId]);
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg space-y-10 mt-14 flex-center">

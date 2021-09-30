@@ -1,7 +1,6 @@
 import React from "react";
 
 function Home(props) {
-  debugger;
   let userDetails = JSON.parse(localStorage.getItem("userDetail"));
   return (
     <div className="flex justify-center my-20">

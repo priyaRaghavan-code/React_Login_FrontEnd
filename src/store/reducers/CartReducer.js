@@ -5,11 +5,8 @@ const initialState = {
 };
 
 export const cartReducer = (state = initialState, action) => {
-  debugger;
   switch (action.type) {
     case "ADD_TO_CART":
-      debugger;
-      // console.log(action.payload.product.id, "Product details");
       const { product } = action.payload;
       console.log(product.id);
       const check = state.products.find((pr) => pr.id === product.id);
@@ -22,7 +19,6 @@ export const cartReducer = (state = initialState, action) => {
           products: [...state.products, product],
           totalPrice: Tprice,
         };
-        console.log(Tprice);
       }
     default:
       return state;
